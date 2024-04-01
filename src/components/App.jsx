@@ -4,7 +4,19 @@ import { GameBoard } from "./GameBoard";
 import "/src/styles/App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  let [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+
+  function incrementScore() {
+    setScore(score + 1);
+    console.log(score);
+  }
+
+  function handleBestScore() {
+    if (score > bestScore) {
+      setBestScore(score);
+    }
+  }
 
   return (
     <>
@@ -13,11 +25,14 @@ function App() {
           <p>Memory Card Game</p>
         </div>
         <div className="scores">
-          <Scores />
+          <Scores score={score} bestScore={bestScore} />
         </div>
       </div>
       <div className="gameBoardContainer">
-        <GameBoard />
+        <GameBoard
+          incrementScore={incrementScore}
+          handleBestScore={handleBestScore}
+        />
       </div>
     </>
   );

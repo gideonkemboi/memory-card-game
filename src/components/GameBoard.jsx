@@ -18,21 +18,25 @@ function shuffleArray(array) {
   return array;
 }
 
-function GameBoard() {
+function GameBoard({ incrementScore, handleBestScore }) {
   const [charArray, setCharArray] = useState(characterArray);
 
   function handleCardClick(name, selected) {
+    console.log(charArray);
     const newArray = charArray.map((image) => {
       if (image.name === name) {
         if (image.selected === true) {
+          handleBestScore();
           console.log("Game over");
         } else {
+          incrementScore();
           return { ...image, selected: !image.selected };
         }
       }
       return image;
     });
 
+    console.log(newArray);
     const shuffledArray = shuffleArray(newArray);
     setCharArray(shuffledArray);
     console.log(name, selected);
