@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.scores {
+  display: flex;
+  margin-left: auto;
+}
+
+.gameBoardContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameBoard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.card {
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+  position: relative;
+  display: inline-block;
+}
+
+.card > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.card > p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+  box-sizing: border-box;
+}
