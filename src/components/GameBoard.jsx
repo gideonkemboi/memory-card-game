@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { characterArray } from "./handleImages";
+import { GameOver } from "./GameOver";
 
 function Card({ src, name, handleClick, selected }) {
   return (
@@ -18,8 +18,7 @@ function shuffleArray(array) {
   return array;
 }
 
-function GameBoard({ incrementScore, handleBestScore }) {
-  const [charArray, setCharArray] = useState(characterArray);
+function GameBoard({ incrementScore, handleBestScore, gameOverComponent, charArray, setCharArray, gameOver, setGameOver }) {
 
   function handleCardClick(name, selected) {
     console.log(charArray);
@@ -27,7 +26,9 @@ function GameBoard({ incrementScore, handleBestScore }) {
       if (image.name === name) {
         if (image.selected === true) {
           handleBestScore();
+          setGameOver(true);
           console.log("Game over");
+          console.log(gameOver)
         } else {
           incrementScore();
           return { ...image, selected: !image.selected };
@@ -54,6 +55,7 @@ function GameBoard({ incrementScore, handleBestScore }) {
           selected={image.selected}
         />
       ))}
+      {gameOver ? gameOverComponent : null}
     </div>
   );
 }
