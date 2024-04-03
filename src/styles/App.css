@@ -16,7 +16,39 @@
   justify-content: center;
 }
 
-.gameBoard {
+.gameBoard4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.gameBoard6 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.gameBoard8,
+.gameBoard12,
+.gameBoard16 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.gameBoard10 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.gameBoard14 {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.gameBoard18 {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;

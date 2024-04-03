@@ -6,26 +6,17 @@ import { GameOver } from "./GameOver";
 import "/src/styles/App.css";
 
 function App() {
-  const [charArray, setCharArray] = useState(characterArray);
+  const [arrayLength, setArrayLength] = useState(4);
+  const [charArray, setCharArray] = useState(characterArray.slice(0, 4));
   const [gameOver, setGameOver] = useState(false);
   let [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
 
-  function incrementScore() {
-    setScore(score + 1);
-    console.log(score);
-  }
-
-  function handleBestScore() {
-    if (score > bestScore) {
-      setBestScore(score);
-    }
-  }
-
   function restart() {
     setScore(0);
-    setCharArray(characterArray);
+    setCharArray(characterArray.slice(0, 4));
     setGameOver(false);
+    setArrayLength(4)
   }
 
   return (
@@ -41,11 +32,18 @@ function App() {
       <div className="gameBoardContainer">
         <h3>Don't click on the same character more than once!</h3>
         <GameBoard
-          incrementScore={incrementScore}
-          handleBestScore={handleBestScore}
-          gameOverComponent={<GameOver score={score} handleButtonClick={restart} />}
+          score={score}
+          setScore={setScore}
+          bestScore={bestScore}
+          setBestScore={setBestScore}
+          gameOverComponent={
+            <GameOver score={score} handleButtonClick={restart} />
+          }
+          characterArray={characterArray}
           charArray={charArray}
           setCharArray={setCharArray}
+          arrayLength={arrayLength}
+          setArrayLength={setArrayLength}
           gameOver={gameOver}
           setGameOver={setGameOver}
         />

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { GameOver } from "./GameOver";
 
 function Card({ src, name, handleClick, selected }) {
   return (
@@ -10,41 +9,63 @@ function Card({ src, name, handleClick, selected }) {
   );
 }
 
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+function GameBoard({
+  score,
+  setScore,
+  bestScore,
+  setBestScore,
+  gameOverComponent,
+  characterArray,
+  charArray,
+  setCharArray,
+  arrayLength,
+  setArrayLength,
+  gameOver,
+  setGameOver,
+}) {
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   }
-  return array;
-}
-
-function GameBoard({ incrementScore, handleBestScore, gameOverComponent, charArray, setCharArray, gameOver, setGameOver }) {
 
   function handleCardClick(name, selected) {
-    console.log(charArray);
     const newArray = charArray.map((image) => {
       if (image.name === name) {
         if (image.selected === true) {
-          handleBestScore();
+          if (score > bestScore) {
+            setBestScore(score);
+          }
           setGameOver(true);
-          console.log("Game over");
-          console.log(gameOver)
         } else {
-          incrementScore();
+          setScore(score + 1);
           return { ...image, selected: !image.selected };
         }
       }
       return image;
     });
 
-    console.log(newArray);
-    const shuffledArray = shuffleArray(newArray);
-    setCharArray(shuffledArray);
-    console.log(name, selected);
+    if (newArray.every((image) => image.selected)) {
+      if (arrayLength === 18) {
+        setGameOver(true);
+      }
+      const newLength = arrayLength + 2;
+      let newArray = shuffleArray(characterArray.slice(0, newLength));
+      setCharArray(newArray);
+      setArrayLength(newLength);
+      console.log(name, selected);
+    } else {
+      setCharArray(shuffleArray(newArray));
+      console.log(name, selected);
+    }
   }
 
+  let className = "gameBoard" + arrayLength;
+
   return (
-    <div className="gameBoard">
+    <div className={className} >
       {charArray.map((image) => (
         <Card
           key={image.name}
