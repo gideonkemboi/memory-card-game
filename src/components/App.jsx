@@ -30,7 +30,7 @@ function App() {
         </div>
       </div>
       <div className="gameBoardContainer">
-        <h3>Don't click on the same character more than once!</h3>
+        <h3>Don't click on the same character more than once in each level!</h3>
         <GameBoard
           score={score}
           setScore={setScore}
