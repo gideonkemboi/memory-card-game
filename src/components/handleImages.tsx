@@ -18,7 +18,7 @@ import Stewie from "/src/assets/Stewie.webp";
 import NeilGoldman from "/src/assets/NeilGoldman.webp";
 
 
-let characterArray = [
+const characterArray = [
   { char: Peter_Griffin, name: "Peter Griffin", selected: false },
   { char: Lois_Griffin, name: "Lois Griffin", selected: false },
   { char: Brian, name: "Brian", selected: false },

@@ -1,23 +1,11 @@
 import { useState } from "react";
-import { characterArray } from "./handleImages";
 import { Scores } from "./Scores";
 import { GameBoard } from "./GameBoard";
-import { GameOver } from "./GameOver";
 import "/src/styles/App.css";
 
 function App() {
-  const [arrayLength, setArrayLength] = useState(4);
-  const [charArray, setCharArray] = useState(characterArray.slice(0, 4));
-  const [gameOver, setGameOver] = useState(false);
-  let [score, setScore] = useState(0);
+  const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-
-  function restart() {
-    setScore(0);
-    setCharArray(characterArray.slice(0, 4));
-    setGameOver(false);
-    setArrayLength(4)
-  }
 
   return (
     <>
@@ -36,16 +24,6 @@ function App() {
           setScore={setScore}
           bestScore={bestScore}
           setBestScore={setBestScore}
-          gameOverComponent={
-            <GameOver score={score} handleButtonClick={restart} />
-          }
-          characterArray={characterArray}
-          charArray={charArray}
-          setCharArray={setCharArray}
-          arrayLength={arrayLength}
-          setArrayLength={setArrayLength}
-          gameOver={gameOver}
-          setGameOver={setGameOver}
         />
       </div>
     </>

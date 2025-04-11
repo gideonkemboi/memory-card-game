@@ -1,4 +1,9 @@
-function Scores({ score, bestScore }) {
+interface ScoresProps {
+  score: number;
+  bestScore: number;
+}
+
+function Scores({ score, bestScore }: ScoresProps) {
   return (
     <>
       <p>Score: {score} |</p>
