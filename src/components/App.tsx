@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Scores } from "./Scores";
 import { GameBoard } from "./GameBoard";
-import "/src/styles/App.css";
 
 function App() {
   const [score, setScore] = useState(0);
@@ -9,15 +8,15 @@ function App() {
 
   return (
     <>
-      <div className="header">
+      <div className="flex items-center px-5 py-0">
         <div className="logo">
           <p>Memory Card Game</p>
         </div>
-        <div className="scores">
+        <div className="ml-auto flex">
           <Scores score={score} bestScore={bestScore} />
         </div>
       </div>
-      <div className="gameBoardContainer">
+      <div className="flex flex-col items-center justify-center">
         <h3>Don't click on the same character more than once in each level!</h3>
         <GameBoard
           score={score}

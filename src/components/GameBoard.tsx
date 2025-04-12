@@ -10,9 +10,18 @@ interface CardProps {
 
 function Card({ src, name, onClick }: CardProps) {
   return (
-    <div className="card" onClick={onClick}>
-      <img src={src} alt={name} />
-      <p>{name}</p>
+    <div
+      className="card group relative inline-block h-37.5 w-37.5 cursor-pointer rounded-sm"
+      onClick={onClick}
+    >
+      <img
+        src={src}
+        alt={name}
+        className="ease h-full w-full rounded-sm object-cover object-top filter transition duration-300 group-hover:brightness-50"
+      />
+      <p className="ease absolute top-[70%] w-full transform-[translate-1/2] text-center text-white opacity-0 italic transition-opacity delay-100 group-hover:opacity-[1]">
+        {name}
+      </p>
     </div>
   );
 }
@@ -84,8 +93,18 @@ function GameBoard({
     setArrayLength(4);
   }
 
+  const gridColsClass: string = {
+    4: "grid-cols-2",
+    6: "grid-cols-3",
+    8: "grid-cols-4",
+    10: "grid-cols-5",
+    12: "grid-cols-4",
+    16: "grid-cols-4",
+    18: "grid-cols-6",
+  }[arrayLength] as string;
+
   return (
-    <div className={`gameBoard${arrayLength.toString()}`}>
+    <div className={`grid gap-2.5 ${gridColsClass}`}>
       {charArray.map((image) => (
         <Card
           key={image.name}
